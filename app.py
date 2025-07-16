@@ -173,13 +173,12 @@ def create_cover_letter_pdf(cover_letter_text, user_data):
 
 def main():
     st.set_page_config(
-        page_title="Resume & Cover Letter Generator",
+        page_title="easyresume",
         page_icon="📄",
-        layout="wide"
     )
     
-    st.title("Easy resume to generate resume in minutes.")
-    st.markdown("EASYRESUME MAKES GENERATION OF RESUME EASY!")
+    st.title("EASY RESUME")
+    st.markdown("Generate resume with ease in minutes.")
     
     # Check if API key is configured
     if not os.getenv('GEMINI_API_KEY'):
@@ -203,24 +202,10 @@ def main():
             'job_description': ''
         }
     
-    # Sidebar for navigation
-    with st.sidebar:
-        st.header("Navigation")
-        if st.button("Step 1: Personal Info", use_container_width=True):
-            st.session_state.current_step = 1
-        if st.button("Step 2: Skills & Experience", use_container_width=True):
-            st.session_state.current_step = 2
-        if st.button("Step 3: Education & Job", use_container_width=True):
-            st.session_state.current_step = 3
-        if st.button("Step 4: Generate", use_container_width=True):
-            st.session_state.current_step = 4
-        
-        st.markdown("---")
-        st.markdown("**Current Step:** " + str(st.session_state.current_step))
     
     #Personal Information
     if st.session_state.current_step == 1:
-        st.header("Step 1: Personal Information")
+        st.header("YOUR INFORMATION")
         
         col1, col2 = st.columns(2)
         
@@ -228,19 +213,19 @@ def main():
             st.session_state.user_data['name'] = st.text_input(
                 "Full Name *", 
                 value=st.session_state.user_data['name'],
-                placeholder="John Doe"
+                placeholder="Vartika"
             )
             
             st.session_state.user_data['email'] = st.text_input(
                 "Email *", 
                 value=st.session_state.user_data['email'],
-                placeholder="john.doe@email.com"
+                placeholder="vartika@email.com"
             )
             
             st.session_state.user_data['phone'] = st.text_input(
                 "Phone *", 
                 value=st.session_state.user_data['phone'],
-                placeholder="+1 (555) 123-4567"
+                placeholder="+91 9933456277"
             )
         
         with col2:
@@ -253,7 +238,7 @@ def main():
             st.session_state.user_data['years_of_experience'] = st.text_input(
                 "Years of Experience", 
                 value=st.session_state.user_data['years_of_experience'],
-                placeholder="5"
+                placeholder="1"
             )
         
         st.session_state.user_data['summary'] = st.text_area(
@@ -272,7 +257,7 @@ def main():
     
     #Skills & Experience
     elif st.session_state.current_step == 2:
-        st.header("Step 2: Skills & Experience")
+        st.header("Skills & Experience")
         
         # Skills
         skills_input = st.text_input(
@@ -324,7 +309,7 @@ def main():
     
     #Education & Job Description
     elif st.session_state.current_step == 3:
-        st.header("Step 3: Education & Job Description")
+        st.header("Education & Job Description")
         
         # Education
         st.subheader("Education")
@@ -372,7 +357,7 @@ def main():
     
     #Generate Documents
     elif st.session_state.current_step == 4:
-        st.header("Step 4: Generate Documents")
+        st.header("Generate Documents")
         
         # Display summary
         st.subheader("Summary")
@@ -418,7 +403,7 @@ def main():
                         
                         with col1:
                             st.download_button(
-                                label="📄 Download Resume (PDF)",
+                                label="Download Resume (PDF)",
                                 data=resume_pdf.getvalue(),
                                 file_name=f"{st.session_state.user_data['name'].replace(' ', '_')}_resume.pdf",
                                 mime="application/pdf"
@@ -426,7 +411,7 @@ def main():
                         
                         with col2:
                             st.download_button(
-                                label="📄 Download Cover Letter (PDF)",
+                                label="Download Cover Letter (PDF)",
                                 data=cover_letter_pdf.getvalue(),
                                 file_name=f"{st.session_state.user_data['name'].replace(' ', '_')}_cover_letter.pdf",
                                 mime="application/pdf"
@@ -447,3 +432,15 @@ def main():
 
 if __name__ == "__main__":
     main() 
+        
+        
+        
+    
+        
+    
+    
+        
+                
+            
+        
+        
